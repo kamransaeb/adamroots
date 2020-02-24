@@ -1,0 +1,218 @@
+@import '~@angular/material/theming';
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+
+// @include mat-core();
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+
+// font stuff
+// "https://fonts.googleapis.com/css?family=Quicksand|Lato"
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Quicksand|Lato'
+);
+@include mat-core($custom-typography);
+
+/* For use in src/lib/core/theming/_palette.scss */
+/* For use in src/lib/core/theming/_palette.scss */
+/* For use in src/lib/core/theming/_palette.scss */
+$md-adamgreen: (
+    50 : #eff8f1,
+    100 : #d7eedd,
+    200 : #bce2c6,
+    300 : #a1d6af,
+    400 : #8cce9d,
+    500 : #78c58c,
+    600 : #70bf84,
+    700 : #65b879,
+    800 : #5bb06f,
+    900 : #48a35c,
+    A100 : #fdfffe,
+    A200 : #caffd5,
+    A400 : #97ffad,
+    A700 : #7eff99,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-facebook: (
+    50 : #e7ebf3,
+    100 : #c4cde0,
+    200 : #9daccc,
+    300 : #768bb7,
+    400 : #5872a7,
+    500 : #3b5998,
+    600 : #355190,
+    700 : #2d4885,
+    800 : #263e7b,
+    900 : #192e6a,
+    A100 : #a4b9ff,
+    A200 : #7192ff,
+    A400 : #3e6bff,
+    A700 : #2558ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-twitter: (
+    50 : #e0f5fd,
+    100 : #b3e6fa,
+    200 : #80d6f6,
+    300 : #4dc5f2,
+    400 : #26b8f0,
+    500 : #00aced,
+    600 : #00a5eb,
+    700 : #009be8,
+    800 : #0092e5,
+    900 : #0082e0,
+    A100 : #ffffff,
+    A200 : #d4ebff,
+    A400 : #a1d3ff,
+    A700 : #88c7ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-google: (
+    50 : #fbe9e7,
+    100 : #f5c9c4,
+    200 : #eea59c,
+    300 : #e78174,
+    400 : #e26657,
+    500 : #dd4b39,
+    600 : #d94433,
+    700 : #d43b2c,
+    800 : #cf3324,
+    900 : #c72317,
+    A100 : #fff9f9,
+    A200 : #ffc9c6,
+    A400 : #ff9993,
+    A700 : #ff817a,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$candy-app-primary: mat-palette($md-adamgreen, 500);
+$candy-app-primary-dark: mat-palette($md-adamgreen, 800);
+
+$candy-app-accent:  mat-palette($mat-blue-grey, 700);
+$candy-app-warn:    mat-palette($mat-deep-orange, 300, 200, 400);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$my-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($my-theme);
+
+.card-background-color {
+  background-color: mat-color($candy-app-primary);
+}
+
+.font-color-accent {
+  color: mat-color($candy-app-accent);
+}
+
+.font-color-primary {
+  color: mat-color($candy-app-primary);
+}
+
+.font-color-primary-dark {
+  color: mat-color($candy-app-primary-dark);
+}
+
+
+// .login-button-facebook {
+//   #3b5998
+// }
+
+// .login-button-twitter {
+//   #00aced
+// }
+
+// .login-button-google {
+//   #dd4b39
+// }
+
+.alternate-theme {
+$dark-primary: mat-palette($md-facebook,600);
+$dark-accent:  mat-palette($md-google);
+$dark-warn:  mat-palette($md-twitter);
+$dark-theme:   mat-light-theme($dark-primary, $dark-accent, $dark-warn);
+@include angular-material-theme($dark-theme);
+}
+
+.alternate-2-theme {
+  $candy-2-primary:    mat-palette($mat-light-blue, 500);
+  $candy-2-accent:    mat-palette($mat-lime, 500);
+  $candy-2-warn:  mat-palette($mat-blue-grey, 700);
+  $candy-2-theme:   mat-light-theme($candy-2-primary, $candy-2-accent, $candy-2-warn);
+  @include angular-material-theme($candy-2-theme);
+  }
+
+

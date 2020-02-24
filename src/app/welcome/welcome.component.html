@@ -1,0 +1,242 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card color="primary" class="carousel-card">
+    <mat-card-content>
+
+      <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <!-- class="image " mat-card-image -->
+          <div class="carousel-item active">
+            <img class="d-block w-100" src='../../assets/img/c1.jpg' alt="photo">
+          </div>
+
+          <div class="carousel-item">
+            <img class="d-block w-100" src='../../assets/img/c2.jpeg' alt="...">
+          </div>
+
+          <div class="carousel-item">
+            <!-- class="d-block w-100" -->
+            <img class="d-block w-100" src='../../assets/img/c3.jpg' alt="...">
+          </div>
+
+          <div class="carousel-item">
+            <img class="d-block w-100" src='../../assets/img/c4.jpeg' alt="...">
+          </div>
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- foodSearchForm section-->
+
+<section fxLayout="column" fxLayoutAlign="space-evenly center">
+
+  <mat-card fxFlex class="search-food-card" color="primary">
+
+    <!-- foodSearchForm title-->
+    <mat-card-title color="primary" class="card-background-color top-round-border" fxLayoutAlign="center center">
+      <h3 fxHide.lt-sm class="font-color-accent">What did you have today?</h3>
+      <h5 fxHide.gt-xs class="font-color-accent">What did you have today?</h5>
+    </mat-card-title>
+
+
+    <mat-card-content class="search-food-form" fxLayout="column">
+      <!-- foodSearchForm  -->
+      <form [formGroup]="searchFoodForm" (ngSubmit)="onSubmit()">
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+          <mat-form-field fxFlex="90" appearance="standard">
+            <!-- searchFoodControl  -->
+            <mat-label>Food or Drinks</mat-label>
+            <input type="text" matInput [formControl]="searchFoodForm.get('searchFoodControl')"
+              placeholder="Search Food" class="search-food-field" aria-label="State" [matAutocomplete]="auto">
+            <!-- searchFoodControl autocomplete -->
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFoodFn"
+              (optionSelected)="showDescription = true">
+              <ng-container *ngIf="!isLoading">
+                <mat-option *ngFor="let food of filteredFoods" [value]="food">
+                  <span><b>{{food.name}}</b></span>
+                </mat-option>
+              </ng-container>
+            </mat-autocomplete>
+          </mat-form-field>
+          <!-- done  -->
+          <button fxFlex type="button" (click)="addFoodPortionFormItem()" mat-raised-button color="primary"
+            [disabled]="searchFoodForm.invalid || disableDoneFoodButton">
+            <mat-icon color="accent" fontSet="material-icons-round">done</mat-icon>
+          </button>
+          <!-- clear  -->
+          <button fxFlex (click)="reset()" mat-raised-button color="warn" [disabled]="searchFoodForm.invalid">
+            <mat-icon color="accent" fontSet="material-icons-round">clear</mat-icon>
+          </button>
+        </div>
+
+        <!-- showDescription -->
+        <ng-container *ngIf="showDescription">
+          <h5>Description :</h5>
+          <div *ngFor="let item of searchFoodForm.get('searchFoodControl').value.name.split(','); let i = index;">
+            <ng-container *ngIf="i > 0">
+              <li>{{item}}</li>
+            </ng-container>
+          </div>
+        </ng-container>
+
+        <!-- food-alert -->
+        <app-alert id="food-alert"></app-alert>
+        <!-- spinner -->
+        <div flexLayout="column" fxLayoutAlign="center center">
+          <mat-spinner *ngIf="isLoading" strokeWidth="5" [diameter]="50"></mat-spinner>
+        </div>
+        <!-- <ng-container *ngIf="errorMsg; else elseTemplate"> -->
+        <!-- <ng-container *ngIf="errorMsg; else elseTemplate">
+            {{errorMsg}}
+          </ng-container>
+          <ng-template #elseTemplate>
+            <h5>Selected Value: {{searchFoodControl.value.name}}</h5>
+          </ng-template> -->
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <div id="foodSearchForm"></div>
+
+  <!-- show portion -->
+  <ng-container *ngIf="showPortions">
+    <mat-card fxFlex class="search-food-card" color="primary">
+      <mat-card-content class="search-food-form" fxLayout="column">
+
+        <!-- show portion header-->
+        <h5>Select Amount :</h5>
+        <div fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="10px">
+
+          <!-- show portion slider -->
+          <mat-slider fxFlex="72" color="primary" (input)="sliderValue = $event.value" [value]="sliderValue" thumbLabel
+            [displayWith]="formatLabel" tickInterval="1" step="10" min="0" max="1000"></mat-slider>
+
+          <div fxLayout="row" fxFlex="28" fxLayoutAlign="center center" fxLayoutGap="10px">
+
+            <!-- show portion input field-->
+            <mat-form-field fxFlex="30" appearance="standard">
+              <mat-label>Grams (g)</mat-label>
+              <input matInput type="number" style="font-size: 20px;" placeholder="Grams" [(ngModel)]="sliderValue">
+              <!-- [ngModelOptions]="{standalone: true}"> -->
+            </mat-form-field>
+            <div class="alternate-2-theme">
+              <!-- add -->
+              <button type="button" (click)="addFoodToList()" mat-raised-button color="primary"
+                [disabled]="sliderValue == 0">
+                <mat-icon color="warn" fontSet="material-icons-round">add</mat-icon>
+              </button>
+            </div>
+            <div class="alternate-2-theme">
+              <!-- visibility -->
+              <button type="button" (click)="openFoodNutrientDialog()" mat-raised-button color="accent"
+                [disabled]="sliderValue == 0">
+                <mat-icon color="warn" fontSet="material-icons-round">visibility</mat-icon>
+                <!-- <mat-icon color="warn" fontSet="material-icons-round">remove_red_eye</mat-icon> -->
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sample Portions header -->
+        <h5>Sample Portions :</h5>
+        <div *ngFor="let foodPortion of foodPortions">
+          <!-- Sample Portions values -->
+          <ng-container>
+            <li>{{foodPortion.amount}} {{foodPortion.modifier}} --> {{foodPortion.gramWeight}} (g)</li>
+          </ng-container>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+    <!-- </section> -->
+  </ng-container>
+  <div id="showPortions"></div>
+
+
+
+  <!-- show food-nutrient-list -->
+  <ng-container *ngIf="showFoodNutrientList">
+
+   <mat-card class="search-food-card" color="primary">
+      <mat-card-content class="search-food-form" fxLayout="column">
+      <app-food-list></app-food-list>
+    </mat-card-content>
+  </mat-card>
+  </ng-container>
+
+
+
+  </section>
+
+  <!-- app product with paginations -->
+  <!-- <app-product></app-product> -->
+
+
+  <!-- <form [formGroup]="orderForm" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+<input formControlName="customerName" type="text" placeholder="Customer Name">
+<input formControlName="email" type="email" placeholder="Email">
+
+<div formArrayName="items"
+  *ngFor="let item of orderForm.get('items').controls; let i = index;">
+  <div [formGroupName]="i">
+    <input formControlName="name" placeholder="Item name">
+    <input formControlName="description" placeholder="Item description">
+    <input formControlName="price" placeholder="Item price">
+  </div>
+
+  Chosen name: {{ orderForm.controls.items.controls[i].controls.name.value }}
+</div>
+
+</form> -->
+
+
+
+
+  <!--<mat-card-content>
+  <form [formGroup]="foodForm" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center"
+    (ngSubmit)="onSubmit()">
+    <div formArrayName="items" *ngFor="let item of foodForm.get('
+    ').controls; let i = index;">
+      <div [formGroupName]="i">
+        <mat-form-field appearance="outline">
+          <mat-label>Food or Drinks</mat-label>
+          <input formControlName="foodName" type="text" matInput placeholder="Food Name">
+        </mat-form-field>
+      </div>
+      Chosen name: {{ foodForm.controls.items.controls[i].controls.foodName.value }}
+    </div>
+    <button type="submit" mat-fab color="accent" [disabled]="foodForm.invalid">Submit</button>
+    <button (click)="addFoodFormItem()" mat-fab color="accent"  [disabled]="foodForm.invalid">add</button>
+  </form>
+  <form [formGroup]="foodForm" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start start" (ngSubmit)="onSubmit()">
+     <mat-form-field appearance="outline">
+       <mat-label>Food or Drinks</mat-label>
+       <input formControlName="foodName" type="text" matInput placeholder="Food Name">
+     </mat-form-field>
+<button type="submit" color="primary" class="large" mat-icon-button [disabled]="foodForm.invalid"><mat-icon>add_circle</mat-icon></button>
+<button type="submit" mat-fab color="accent" [disabled]="foodForm.invalid">Submit</button>
+  </form>
+
+</mat-card-content>-->
+  <!-- <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="../../assets/img/c1.jpg" alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div> -->

@@ -1,0 +1,7 @@
+{
+    "terminal.integrated.fontSize": 15,
+    "editor.fontSize": 13,
+    "editor.fontFamily": "Menlo",
+    "workbench.colorTheme": "Default Light+",
+    "explorer.compactFolders": false
+}

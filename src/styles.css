@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+/* @import '~@angular/material/theming.css'; */
+/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+/* @import "~@fortawesome/fontawesome-free/css/all.css"; */
+
+/* * {
+  font-family: 'Quicksand|Lato' !important;
+  font-style: normal !important;
+} */
+html, body {
+  font-family: 'Quicksand', sans-serif;
+  /* font-style: normal; */
+/* font-weight: 300; */
+  /* font-family: 'Roboto', sans-serif; */
+  height: 100%;
+}
+
+
+button:focus, button:active:focus, button.active:focus {
+  outline: none !important;
+  outline-style: none !important;
+}

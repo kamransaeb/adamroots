@@ -1,0 +1,115 @@
+.carousel-card {
+  margin: 20px !important;
+  padding: 0px !important;
+  /* width: 100% !important; */
+  border-radius: 5px;
+    overflow: hidden;
+}
+
+.top-round-border {
+  border-top-left-radius:inherit !important;
+  border-top-right-radius:inherit !important;
+
+}
+/* .search-food-cards {
+  margin-top: 10px !important;
+  max-width: 800px !important;
+  width: 90% !important;
+  padding: 0px !important;
+} */
+.search-food-card {
+  margin-bottom: 10px !important;
+  max-width: 800px !important;
+  width: 90% !important;
+  padding: 0px !important;
+}
+mat-form-field {
+  width: 90%;
+}
+
+mat-card-title {
+  height: 70px;
+}
+
+::ng-deep .mat-icon-button.large {
+  width: 58px !important;
+  height: 58px !important;
+  line-height: 58px !important;
+}
+::ng-deep .mat-icon.large {
+  font-size: 58px !important;
+  line-height: 58px !important;
+  width: 58px !important;
+  height: 58px !important;
+}
+
+.search-food-form {
+  padding: 20px;
+  width: 100%;
+}
+
+.search-food-field {
+  width: 100%;
+}
+
+.carousel {
+  /* width: 900px !important; */
+  /* height: 450px !important; */
+
+  }
+.carousel-inner{
+  /* width: 900px !important; */
+  /* height: 450px !important; */
+}
+
+@media screen and (max-width: 1920px) {
+  .carousel {
+    /* width: 800px !important; */
+    height: 350px !important;
+  }
+  .carousel-inner {
+    /* width: 800px !important; */
+    height: 350px !important;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .carousel {
+    /* width: 700px !important; */
+    height: 300px !important;
+  }
+  .carousel-inner {
+    /* width: 700px !important; */
+    height: 300px !important;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .carousel {
+    /* width: 600px !important; */
+    height: 250px !important;
+  }
+  .carousel-inner {
+    /* width: 600px !important; */
+    height: 250px !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .carousel {
+    /* width: 400px !important; */
+    height: 150px !important;
+  }
+  .carousel-inner {
+    /* width: 400px !important; */
+    height: 150px !important;
+  }
+}
+
+.div-border {
+  border: 1px solid black;
+}
+
+.div-color {
+  background: blue
+}

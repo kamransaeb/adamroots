@@ -1,0 +1,43 @@
+<mat-toolbar>
+  <mat-toolbar-row class="mat-elevation-z2 tbar" fxLayoutAlign="space-between center" >
+    <!-- <div  > -->
+    <!-- <span>Responsive Navigation</span>-->
+    <!-- <div><img src='../../../assets/logo-1.png' style="height: 50px" alt="..."></div> -->
+    <a routerLink="/welcome"><img src='../../../assets/logo_header_final_1.png' style="height: 50px" alt="..."></a>
+
+
+    <!-- <span class="menu-spacer"></span> -->
+
+
+    <mat-label fxLayout="row" fxFlex.gt-md="25" fxFlex.gt-sm="35"  fxFlex.lt-sm="25"
+           fxLayoutAlign="center center"
+        class="font-color-primary-dark" fxHide.lt-sm>
+       <!-- <h1>Let's Eat Healthy</h1> -->
+       <h1>Eat Healthy</h1>
+
+      <!-- <h1>1</h1> -->
+    </mat-label>
+
+    <!-- <a class="div-border"  fxFlex="33" routerLink="/welcome"><img src='../../../assets/logo_header_final_1.png' style="height: 50px" alt="..."></a> -->
+
+
+    <!-- <span fxHide.lt-sm class="menu-spacer"></span> -->
+
+    <div  fxShow="true" fxHide.gt-sm  fxLayoutAlign="flex-end center">
+      <button mat-icon-button (click)="onToggleSidenav()"  >
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <div fxShow="true" fxLayoutAlign="flex-end center"  fxHide.lt-md>
+      <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+      <!-- mat-button -->
+      <a *ngIf="!isAuthenticated" mat-button routerLink="/signup" color="accent">Signup</a>
+      <a *ngIf="!isAuthenticated" mat-button routerLink="/login" color="accent">Login</a>
+      <a *ngIf="!isAuthenticated" mat-button routerLink="/welcome" color="accent">Welcome</a>
+      <a *ngIf="isAuthenticated" mat-button routerLink="/profile" color="accent">Profile</a>
+      <a *ngIf="isAuthenticated" mat-button (click)="onLogout()" color="accent">Logout</a>
+    </div>
+  <!-- </div> -->
+  </mat-toolbar-row>
+</mat-toolbar>

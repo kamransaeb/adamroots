@@ -1,0 +1,54 @@
+<p>Select Gender and Age to view results</p>
+
+<div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+
+  <mat-form-field appearance="standard">
+    <mat-label>Gender</mat-label>
+    <mat-select name="gender" (selectionChange)="genderListChangeAction(genderSelection)" [(ngModel)]="genderSelection">
+      <mat-option *ngFor="let gender of genderList" [value]="gender.genderName">
+        {{ gender.genderName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Age</mat-label>
+    <mat-select name="period" [(ngModel)]="periodSelection">
+      <mat-option *ngFor="let period of periodList" [value]="period">{{ period }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="alternate-2-theme">
+    <!-- visibility -->
+    <button type="button" mat-raised-button color="accent" (click)="getFoodListNutrients()" [disabled]="!visibilityButton">
+      <mat-icon color="warn" fontSet="material-icons-round">visibility</mat-icon>
+      <!-- <mat-icon color="warn" fontSet="material-icons-round">remove_red_eye</mat-icon> -->
+    </button>
+  </div>
+
+</div>
+
+<div flexLayout="column" fxLayoutAlign="center center">
+  <mat-spinner *ngIf="isLoading" strokeWidth="5" [diameter]="50"></mat-spinner>
+</div>
+
+<ng-container *ngIf="showNutrients">
+  <div style="max-width: 900px; overflow: auto" mat-dialog-content>
+    <!-- <ngx-charts-bar-horizontal [view]="view" [scheme]="colorScheme" [results]="foodNutrientsChartMacronutrient" [gradient]="gradient"
+      [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+    </ngx-charts-bar-horizontal> -->
+    <h4>Macronutrients</h4>
+      <ngx-charts-bar-horizontal [view]="viewMacronutrients" [scheme]="colorScheme" [results]="foodNutrientsChartMacronutrient" [gradient]="gradient"
+      [xAxis]="showXAxis" [yAxis]="showYAxis" (select)="onSelect($event)">
+    </ngx-charts-bar-horizontal>
+    <h4>Vitamins</h4>
+    <ngx-charts-bar-horizontal [view]="viewVitamins" [scheme]="colorScheme" [results]="foodNutrientsChartVitamins" [gradient]="gradient"
+      [xAxis]="showXAxis" [yAxis]="showYAxis" (select)="onSelect($event)">
+    </ngx-charts-bar-horizontal>
+    <h4>Minerals</h4>
+    <ngx-charts-bar-horizontal [view]="viewMinerals" [scheme]="colorScheme" [results]="foodNutrientsChartMinerals" [gradient]="gradient"
+      [xAxis]="showXAxis" [yAxis]="showYAxis" (select)="onSelect($event)">
+    </ngx-charts-bar-horizontal>
+  </div>
+</ng-container>

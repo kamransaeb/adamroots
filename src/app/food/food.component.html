@@ -1,0 +1,30 @@
+<h2>My foods</h2>
+
+<div>
+  <label>food name:
+    <input #foodName/>
+  </label>
+
+  <button (click)="add(foodName.value); foodName.value=''">
+    add
+  </button>
+</div>
+
+<ul>
+  <li *ngFor="let food of page.content">
+    <a routerLink="/food/detail/{{ food.id }}">
+      <span>
+        {{ food.id }}
+      </span>
+      {{ food.name }}
+    </a>
+    <button title="delete food" (click)="delete(food)">x</button>
+  </li>
+</ul>
+<app-alert id='food-alert'></app-alert>
+<app-custom-pagination
+        [page]="page"
+        (nextPageEvent)="getNextPage()"
+        (previousPageEvent)="getPreviousPage()"
+        (pageSizeEvent)="getPageInNewSize($event)">
+</app-custom-pagination>

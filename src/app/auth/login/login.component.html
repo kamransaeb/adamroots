@@ -1,0 +1,77 @@
+<!-- Material Login Page -->
+<section fxLayout="column" fxLayoutAlign="center center" class="login-section">
+  <!-- <section> -->
+  <mat-card class="example-card" color="primary" >
+    <mat-card-header fxLayoutAlign="center center" class="card-background-color" color="primary">
+      <mat-card-title  color="primary">
+          <mat-icon inline=true style="font-size: 2.5em;" fontSet="fa" fontIcon="fa-user-circle"></mat-icon>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content fxLayout="column" fxLayoutAlign="space-evenly">
+
+    <!-- <section class="alternate-theme div-border" fxLayout="column" fxLayoutAlign="space-around center"> -->
+      <!-- style="margin-top: 20px; height: 100px"> -->
+      <div class="alternate-theme" style="height: 180px; margin-top: 20px;" fxLayout="column" fxLayoutAlign="space-evenly center">
+
+          <!-- Facebook Button -->
+          <button class="login-button" gdAlignRows="start stretch"  type="submit" mat-raised-button color="primary"
+            [disabled]="loginForm.invalid">
+              <mat-icon inline=true fxFlex="20" fontSet="fa" fontIcon="fa-facebook-square"></mat-icon>
+              <div fxFlex="80">Login with Facebook</div>
+          </button>
+
+          <!-- Google Button -->
+          <button class="login-button" gdAlignRows="start stretch"  type="submit" mat-raised-button color="accent"
+            [disabled]="loginForm.invalid">
+              <mat-icon  inline=true fxFlex="20" fontSet="fa" fontIcon="fa-google"></mat-icon>
+              <div fxFlex="80" >Login with Google</div>
+          </button>
+
+          <!-- Twitter Button -->
+          <button class="login-button " gdAlignRows="start stretch"  type="submit" mat-raised-button color="warn"
+            [disabled]="loginForm.invalid">
+              <mat-icon inline=true fxFlex="20" fontSet="fa" fontIcon="fa-twitter"></mat-icon>
+              <div fxFlex="80" >Login with Twitter</div>
+          </button>
+
+        </div>
+
+      <!-- Or Divider -->
+      <div fxLayout="row" fxLayoutAlign="center center">
+          <div style="border-bottom: 1px solid lightgray;" fxFlex="45%" fxLayoutAlign="start center"></div>
+          <div fxFlex="10%" fxLayoutAlign="center center">Or</div>
+          <div style="border-bottom: 1px solid lightgray;" fxFlex="45%" fxLayoutAlign="end center"></div>
+      </div>
+
+     <!-- Main form -->
+     <form style="height: 240px; margin-bottom: 20px;" [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="space-evenly center" >
+
+      <!-- Email field -->
+       <mat-form-field appearance="outline">
+         <mat-label>Email</mat-label>
+         <input formControlName="email" type="email" matInput placeholder="Your Email" formControlName="email">
+         <!-- #emailInput="ngModel"> -->
+         <!-- <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty!</mat-error> -->
+         <!-- <mat-error *ngIf="!emailInput.hasError('required')">Email is invalid!</mat-error> -->
+       </mat-form-field>
+       <!-- Password field -->
+       <mat-form-field appearance="outline">
+         <mat-label>Password</mat-label>
+         <input formControlName="password" type="password" matInput placeholder="Your Password">
+         <!-- #passwordInput="ngModel"> -->
+         <!-- <mat-hint align="end">{{ passwordInput.value?.length }} / 6</mat-hint> -->
+         <!-- <mat-error>Password is invalid!</mat-error> -->
+       </mat-form-field>
+       <!-- Login Button -->
+       <button class="login-button" type="submit" mat-raised-button color="primary"
+         [disabled]="loginForm.invalid">Login</button>
+
+          <!-- Error message -->
+     <app-alert></app-alert>
+     </form>
+
+
+    </mat-card-content>
+  </mat-card>
+</section >
